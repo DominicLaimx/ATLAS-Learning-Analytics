@@ -86,78 +86,78 @@ def quantitative_filter2(df,column_name):
 def section_One_Quantitative(data):
     res_dict = {}
     res = quantitative_filter(data,'1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2')
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q1"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter(data,'2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2')
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q2"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter(data,'3.\xa0\xa0\xa0\xa0 I will adjust my study habits or learning strategies based on insights from learning analytics.2')
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q3"]=[res[0]+res[1],res[2],res[3]+res[4]]
     return res_dict
 
 def section_Two_Quantitative(data):
     res_dict = {}
     res = quantitative_filter2(data,"1.\xa0\xa0\xa0\xa0 I know that the university has put in place a student data governance policy in line with PDPC.2")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q1"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"2.\xa0 \xa0 \xa0The university should ask for my explicit consent for learning analytics projects if it involves any identifiable data about me (e.g., name, ethnicity, age, and gender).2")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q2"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"3.\xa0\xa0\xa0\xa0 I am comfortable with the idea of NTU collecting data on my learning behaviours and performances to improve teaching and learning.2")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q3"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"4.\xa0\xa0\xa0\xa0 It is important to me that I can opt out of the collection of my learning data for my professors and tutors. 2")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q4"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"5.\xa0\xa0\xa0\xa0 It is important to me that I can opt out of the collection of my learning data to be used by myself.2")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q5"]=[res[0]+res[1],res[2],res[3]+res[4]]
     return res_dict
 
 def section_Three_Quantitative(data):
     res_dict = {}
     res = quantitative_filter2(data,"1.\xa0\xa0\xa0\xa0 The university should regularly update me about my learning progress based on the analysis of my educational data.3")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q1"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"2.\xa0 \xa0The learning analytics service should show how my learning progress compares to the course learning outcomes.3")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q2"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"3.\xa0\xa0\xa0\xa0 I expect the teaching staff to act (i.e. support me) if the analytics show that I am at-risk of failing, underperforming or needs improvement in my learning.3")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q3"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU. a. Early AleRT for Learning Intervention (EARLI): A predictive AI project to detect and support at-risk students...")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q4"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU. b. Course Analytics Dashboard for Students (CADS): A personalised learning analytics project that provides facul...")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q5"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0c. NTU AI Learning Assistant (NALA): Customised Gen-AI tutoring chatbot to guide students based on faculty curat...")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q6"]=[res[0]+res[1],res[2],res[3]+res[4]]
     res = quantitative_filter2(data,"4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0d. Skills and Course Advising for Learning Excellence (SCALE): A course and co-curricular recommendation AI proj...")
-    print(res)
-    print([res[0]+res[1],res[2],res[3]+res[4]])
+    # print(res)
+    # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q7"]=[res[0]+res[1],res[2],res[3]+res[4]]
     return res_dict
 '''No categorisation'''
-# s1 = section_One_Quantitative(df)
-# s2 = section_Two_Quantitative(df)
-# s3 = section_Three_Quantitative(df)
+s1 = section_One_Quantitative(df)
+s2 = section_Two_Quantitative(df)
+s3 = section_Three_Quantitative(df)
 
 # Categorisation by STEM/non_STEM
 print("\n\n")
@@ -180,9 +180,9 @@ print("\nnon_STEM_data")
 s3_non_STEM = section_Three_Quantitative(non_STEM_data)
 
 
-'''Categorisation by year
+'''Categorisation by year'''
 
-# Years_dict = {"Year 1": 65, "Year 2":53, "Year 3":21, "Year 4":27, "Year 5 and above":2}
+Years_dict = {"Year 1": 65, "Year 2":53, "Year 3":21, "Year 4":27, "Year 5 and above":2}
 
 y1_data = df.loc[df["Year of Study"]=="Year 1"]
 y2_data = df.loc[df["Year of Study"]=="Year 2"]
@@ -221,13 +221,28 @@ print("\ny3_data")
 s3_y3=section_Three_Quantitative(y3_data)
 print("\ny4_data")
 s3_y4=section_Three_Quantitative(y4_data)
-'''
+
 
 '''Categorise by section 1 qn 1'''
-# s1q1A = df.loc[df["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2"].isin(["Strongly agree","Agree"])]
-# s1q1A_s1 = section_One_Quantitative(s1q1A)
-# s1q1D = df.loc[df["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2"].isin(["Strongly disagree","Disagree"])]
-# s1q1D_s1 = section_One_Quantitative(s1q1D)
+s1q1A = df.loc[df["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2"].isin(["Strongly agree","Agree"])]
+s1q1A_s1 = section_One_Quantitative(s1q1A)
+s1q1D = df.loc[df["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2"].isin(["Strongly disagree","Disagree"])]
+s1q1D_s1 = section_One_Quantitative(s1q1D)
+s1q1A_s2 = section_Two_Quantitative(s1q1A)
+s1q1D_s2 = section_Two_Quantitative(s1q1D)
+s1q1A_s3 = section_Three_Quantitative(s1q1A)
+s1q1D_s3 = section_Three_Quantitative(s1q1D)
+
+'''Categorise by section 1 qn 2'''
+s1q2A = df.loc[df["2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2"].isin(["Strongly agree","Agree"])]
+s1q2A_s1 = section_One_Quantitative(s1q2A)
+s1q2D = df.loc[df["2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2"].isin(["Strongly disagree","Disagree"])]
+s1q2D_s1 = section_One_Quantitative(s1q2D)
+s1q2A_s2 = section_Two_Quantitative(s1q2A)
+s1q2D_s2 = section_Two_Quantitative(s1q2D)
+s1q2A_s3 = section_Three_Quantitative(s1q2A)
+s1q2D_s3 = section_Three_Quantitative(s1q2D)
+
 '''Hypo 1 does stem/ non-STEM produce differnet answers for some questions'''
 # print("\nSection 1")
 # for i in s1_STEM:
@@ -263,18 +278,19 @@ def create_df(datalist,sectionname,sizes):
     return combined_df
 
 
-combined_df = create_df([s1_STEM,s1_non_STEM],["STEM_S1","non_STEM_S1"],[112,56])
+# combined_df = create_df([s3_STEM,s3_non_STEM],["STEM_S3","non_STEM_S3"],[112,54])
 # combined_df = create_df([s3_y1,s3_y2,s3_y3,s3_y4],["y1_S3","y2_S3","y3_S3","y4_S3"],[65,53,21,27])
-# dropped = [i for i in range(16,28,1)]
-# combined_df = combined_df.drop(dropped)
 # combined_df = create_df([s3],["S3"],[166])
-# combined_df = create_df([s1q1D_s1],["S1"],[62]) #77 29 62 / 127 26 15 / 118 31 19
+combined_df = create_df([s1q2A_s3,s1q2D_s3],["Agree","Disagree"],[127,15]) #77 29 62 / 127 26 15 / 118 31 19
+dropped = [i for i in range(0,8,1)]
+combined_df = combined_df.drop(dropped)
+# combined_df = combined_df.drop([0,1,2,3])
 print(combined_df)
 plot1 = combined_df.plot( 
     x = 'question', 
     kind = 'barh', 
     stacked = True, 
-    title = 'Section 1 with categorisation of STEM / non-STEM', 
+    title = 'Section 3 with categorisation by s1q2', 
     mark_right = True)
 plt.legend (loc='upper left')
 # df_total = combined_df
