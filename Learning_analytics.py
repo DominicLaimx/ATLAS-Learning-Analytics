@@ -19,6 +19,26 @@ columnlist = list(df.columns)
 # for i in columnlist:
 #     print(i)
 #     print("\n")
+# df = df[["ID","Year of Study", "School", "I have read and understood the instructions.", \
+#         "1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2",\
+#         "2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2",\
+#         "3.\xa0\xa0\xa0\xa0 I will adjust my study habits or learning strategies based on insights from learning analytics.2",\
+#         "Would you like to elaborate on your ratings?2", \
+#         "1.\xa0\xa0\xa0\xa0 I know that the university has put in place a student data governance policy in line with PDPC.2",\
+#         "2.\xa0 \xa0 \xa0The university should ask for my explicit consent for learning analytics projects if it involves any identifiable data about me (e.g., name, ethnicity, age, and gender).2",\
+#         "3.\xa0\xa0\xa0\xa0 I am comfortable with the idea of NTU collecting data on my learning behaviours and performances to improve teaching and learning.2",\
+#         "4.\xa0\xa0\xa0\xa0 It is important to me that I can opt out of the collection of my learning data for my professors and tutors. 2",\
+#         "5.\xa0\xa0\xa0\xa0 It is important to me that I can opt out of the collection of my learning data to be used by myself.2",\
+#         "Would you like to raise any further privacy concerns that NTU should address with learning analytics?2",\
+#         "Do you have any further suggestions or comments on how you would like to be supported by learning analytics?",\
+#         "1.\xa0\xa0\xa0\xa0 The university should regularly update me about my learning progress based on the analysis of my educational data.3",\
+#         "2.\xa0 \xa0The learning analytics service should show how my learning progress compares to the course learning outcomes.3",\
+#         "3.\xa0\xa0\xa0\xa0 I expect the teaching staff to act (i.e. support me) if the analytics show that I am at-risk of failing, underperforming or needs improvement in my learning.3",\
+#         "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU. a. Early AleRT for Learning Intervention (EARLI): A predictive AI project to detect and support at-risk students...",\
+#         "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU. b. Course Analytics Dashboard for Students (CADS): A personalised learning analytics project that provides facul...",\
+#         "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0c. NTU AI Learning Assistant (NALA): Customised Gen-AI tutoring chatbot to guide students based on faculty curat...",\
+#         "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0d. Skills and Course Advising for Learning Excellence (SCALE): A course and co-curricular recommendation AI proj...",\
+# ]]
 df = df[["ID","Year of Study", "School", "I have read and understood the instructions.", \
         "1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2",\
         "2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2",\
@@ -158,26 +178,28 @@ def section_Three_Quantitative(data):
 s1 = section_One_Quantitative(df)
 s2 = section_Two_Quantitative(df)
 s3 = section_Three_Quantitative(df)
+# print(s1.value_counts())
 
 # Categorisation by STEM/non_STEM
-print("\n\n")
-print("Section one:")
-print("\nSTEM_data")
-s1_STEM = section_One_Quantitative(STEM_data)
-print("\nnon_STEM_data")
-s1_non_STEM = section_One_Quantitative(non_STEM_data)
-print("\n\n")
-print("Section two:")
-print("\nSTEM_data")
-s2_STEM = section_Two_Quantitative(STEM_data)
-print("\nnon_STEM_data")
-s2_non_STEM = section_Two_Quantitative(non_STEM_data)
-print("\n\n")
-print("Section three:")
-print("\nSTEM_data")
-s3_STEM = section_Three_Quantitative(STEM_data)
-print("\nnon_STEM_data")
-s3_non_STEM = section_Three_Quantitative(non_STEM_data)
+# s1_STEM = section_One_Quantitative(STEM_data)
+# s1_non_STEM = section_One_Quantitative(non_STEM_data)
+# s2_STEM = section_Two_Quantitative(STEM_data)
+# s2_non_STEM = section_Two_Quantitative(non_STEM_data)
+# s3_STEM = section_Three_Quantitative(STEM_data)
+# s3_non_STEM = section_Three_Quantitative(non_STEM_data)
+# print("\n\n")
+# print("Section one:")
+# print("\nSTEM_data")
+# print("\nnon_STEM_data")
+# print("\n\n")
+# print("Section two:")
+# print("\nSTEM_data")
+# print("\nnon_STEM_data")
+# print("\n\n")
+# print("Section three:")
+# print("\nSTEM_data")
+# print("\nnon_STEM_data")
+
 
 
 '''Categorisation by year'''
@@ -187,7 +209,7 @@ Years_dict = {"Year 1": 65, "Year 2":53, "Year 3":21, "Year 4":27, "Year 5 and a
 y1_data = df.loc[df["Year of Study"]=="Year 1"]
 y2_data = df.loc[df["Year of Study"]=="Year 2"]
 y3_data = df.loc[df["Year of Study"]=="Year 3"]
-y4_data = df.loc[df["Year of Study"]=="Year 4"]
+y4_data = df.loc[df["Year of Study"].isin(["Year 4","Year 5 and above"])]
 
 print("\n\n")
 print("Section one:")
@@ -223,7 +245,7 @@ print("\ny4_data")
 s3_y4=section_Three_Quantitative(y4_data)
 
 
-'''Categorise by section 1 qn 1'''
+# '''Categorise by section 1 qn 1'''
 s1q1A = df.loc[df["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2"].isin(["Strongly agree","Agree"])]
 s1q1A_s1 = section_One_Quantitative(s1q1A)
 s1q1D = df.loc[df["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2"].isin(["Strongly disagree","Disagree"])]
@@ -233,7 +255,7 @@ s1q1D_s2 = section_Two_Quantitative(s1q1D)
 s1q1A_s3 = section_Three_Quantitative(s1q1A)
 s1q1D_s3 = section_Three_Quantitative(s1q1D)
 
-'''Categorise by section 1 qn 2'''
+# '''Categorise by section 1 qn 2'''
 s1q2A = df.loc[df["2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2"].isin(["Strongly agree","Agree"])]
 s1q2A_s1 = section_One_Quantitative(s1q2A)
 s1q2D = df.loc[df["2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2"].isin(["Strongly disagree","Disagree"])]
@@ -242,6 +264,7 @@ s1q2A_s2 = section_Two_Quantitative(s1q2A)
 s1q2D_s2 = section_Two_Quantitative(s1q2D)
 s1q2A_s3 = section_Three_Quantitative(s1q2A)
 s1q2D_s3 = section_Three_Quantitative(s1q2D)
+
 
 '''Hypo 1 does stem/ non-STEM produce differnet answers for some questions'''
 # print("\nSection 1")
@@ -278,19 +301,26 @@ def create_df(datalist,sectionname,sizes):
     return combined_df
 
 
-# combined_df = create_df([s3_STEM,s3_non_STEM],["STEM_S3","non_STEM_S3"],[112,54])
-# combined_df = create_df([s3_y1,s3_y2,s3_y3,s3_y4],["y1_S3","y2_S3","y3_S3","y4_S3"],[65,53,21,27])
-# combined_df = create_df([s3],["S3"],[166])
-combined_df = create_df([s1q2A_s3,s1q2D_s3],["Agree","Disagree"],[127,15]) #77 29 62 / 127 26 15 / 118 31 19
-dropped = [i for i in range(0,8,1)]
-combined_df = combined_df.drop(dropped)
+combined_df_STEM= create_df([s1_STEM,s1_non_STEM],["STEM_S1","non_STEM_S1"],[112,56])
+combined_df_year = create_df([s1_y1,s1_y2,s1_y3,s1_y4],["y1_S1","y2_S1","y3_S1",">y4_S1"],[65,53,21,29])
+combined_df_no = create_df([s1],["S1"],[166])
+combined_df_s1q1 = create_df([s1q1A_s1,s1q1D_s1],["Agree","Disagree"],[77,62]) #77 29 62 / 127 26 15 / 118 31 19
+# combined_df = combined_df_no
+# dropped = [i for i in range(0,2,1)]
+# combined_df = combined_df.drop(dropped)
+test_df = combined_df_no
+test_df.loc[0] = combined_df_no.loc[2]
+test_df.loc[1] = combined_df_STEM.loc[5]
+test_df.loc[2] = combined_df_year.loc[11]
+test_df.loc[3] = combined_df_s1q1.loc[4]
+combined_df = test_df
 # combined_df = combined_df.drop([0,1,2,3])
 print(combined_df)
 plot1 = combined_df.plot( 
     x = 'question', 
     kind = 'barh', 
     stacked = True, 
-    title = 'Section 3 with categorisation by s1q2', 
+    title = 'Section 1 with no categorisation', 
     mark_right = True)
 plt.legend (loc='upper left')
 # df_total = combined_df
