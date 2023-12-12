@@ -13,6 +13,8 @@ Dependencies:
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy import stats
+
 url = "D:\\Nanyang Technological University\\NTU Imperial Student-Led Project on Learning Analytics - General\\NTU Student Analytics Survey.xlsx"
 df = pd.read_excel(url)
 columnlist = list(df.columns)
@@ -154,6 +156,75 @@ def section_Three_Quantitative(data):
     # print([res[0]+res[1],res[2],res[3]+res[4]])
     res_dict["q7"]=[res[0]+res[1],res[2],res[3]+res[4]]
     return res_dict
+def transform_likert_scale(data,cols):
+    # new_df = data[[cols[0],cols[1],cols[2]]]
+    # new_df = data[[cols[0],cols[1],cols[2],cols[3],cols[4]]]
+    new_df = data[[cols[0],cols[1],cols[2],cols[3],cols[4],cols[5],cols[6]]]
+    # print(new_df.head(5))
+    for index, row in new_df.iterrows():
+        for i in cols:
+            if(row[i]=="Strongly Agree"):
+                row[i]= 5
+            elif(row[i]=="Agree"):
+                row[i]=4
+            elif(row[i]=="Neutral"):
+                row[i]=3
+            elif(row[i]=="Disagree"):
+                row[i]=2
+            elif(row[i]=="Strongly Disagree"):
+                row[i]=1
+    # print(new_df.head(5))
+    return new_df
+
+cols = ["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2",\
+                  "2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2",\
+                "3.\xa0\xa0\xa0\xa0 I will adjust my study habits or learning strategies based on insights from learning analytics.2"]
+cols2 = ["1.\xa0\xa0\xa0\xa0 I know that the university has put in place a student data governance policy in line with PDPC.2",\
+        "2.\xa0 \xa0 \xa0The university should ask for my explicit consent for learning analytics projects if it involves any identifiable data about me (e.g., name, ethnicity, age, and gender).2",\
+        "3.\xa0\xa0\xa0\xa0 I am comfortable with the idea of NTU collecting data on my learning behaviours and performances to improve teaching and learning.2",\
+        "4.\xa0\xa0\xa0\xa0 It is important to me that I can opt out of the collection of my learning data for my professors and tutors. 2",\
+        "5.\xa0\xa0\xa0\xa0 It is important to me that I can opt out of the collection of my learning data to be used by myself.2"]
+cols3 = ["1.\xa0\xa0\xa0\xa0 The university should regularly update me about my learning progress based on the analysis of my educational data.3",\
+        "2.\xa0 \xa0The learning analytics service should show how my learning progress compares to the course learning outcomes.3",\
+        "3.\xa0\xa0\xa0\xa0 I expect the teaching staff to act (i.e. support me) if the analytics show that I am at-risk of failing, underperforming or needs improvement in my learning.3",\
+        "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU. a. Early AleRT for Learning Intervention (EARLI): A predictive AI project to detect and support at-risk students...",\
+        "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU. b. Course Analytics Dashboard for Students (CADS): A personalised learning analytics project that provides facul...",\
+        "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0c. NTU AI Learning Assistant (NALA): Customised Gen-AI tutoring chatbot to guide students based on faculty curat...",\
+        "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0d. Skills and Course Advising for Learning Excellence (SCALE): A course and co-curricular recommendation AI proj..."
+]
+# STEM_res = transform_likert_scale(STEM_data,cols)
+# SHAPE_res = transform_likert_scale(non_STEM_data,cols)
+# print(STEM_res)
+# print(STEM_res.describe())
+# print(SHAPE_res.describe())
+# print(stats.ttest_ind(pd.to_numeric(STEM_res[cols[0]]), pd.to_numeric(SHAPE_res[cols[0]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res[cols[1]]), pd.to_numeric(SHAPE_res[cols[1]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res[cols[2]]), pd.to_numeric(SHAPE_res[cols[2]]),equal_var=False))
+
+# STEM_res2 = transform_likert_scale(STEM_data,cols2)
+# SHAPE_res2 = transform_likert_scale(non_STEM_data,cols2)
+# print(STEM_res2.describe())
+# print(SHAPE_res2.describe())
+# print(stats.ttest_ind(pd.to_numeric(STEM_res2[cols2[0]]), pd.to_numeric(SHAPE_res2[cols2[0]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res2[cols2[1]]), pd.to_numeric(SHAPE_res2[cols2[1]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res2[cols2[2]]), pd.to_numeric(SHAPE_res2[cols2[2]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res2[cols2[3]]), pd.to_numeric(SHAPE_res2[cols2[3]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res2[cols2[4]]), pd.to_numeric(SHAPE_res2[cols2[4]]),equal_var=False))
+# STEM_res3 = transform_likert_scale(STEM_data,cols3)
+# SHAPE_res3 = transform_likert_scale(non_STEM_data,cols3)
+# STEM_res3.fillna(3,inplace=True)
+# SHAPE_res3.fillna(3,inplace=True)
+# print(STEM_res3.head(5))
+# print(SHAPE_res3.head(5))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[0]]), pd.to_numeric(SHAPE_res3[cols3[0]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[1]]), pd.to_numeric(SHAPE_res3[cols3[1]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[2]]), pd.to_numeric(SHAPE_res3[cols3[2]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[3]]), pd.to_numeric(SHAPE_res3[cols3[3]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[4]]), pd.to_numeric(SHAPE_res3[cols3[4]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[5]]), pd.to_numeric(SHAPE_res3[cols3[5]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[6]]), pd.to_numeric(SHAPE_res3[cols3[6]]),equal_var=False))
+
+
 '''No categorisation'''
 s1 = section_One_Quantitative(df)
 s2 = section_Two_Quantitative(df)
@@ -191,39 +262,52 @@ y2_data = df.loc[df["Year of Study"]=="Year 2"]
 y3_data = df.loc[df["Year of Study"]=="Year 3"]
 y4_data = df.loc[df["Year of Study"].isin(["Year 4","Year 5 and above"])]
 
-print("\n\n")
-print("Section one:")
-print("\ny1_data")
+# print("\n\n")
+# print("Section one:")
+# print("\ny1_data")
 s1_y1=section_One_Quantitative(y1_data)
-print("\ny2_data")
+# print("\ny2_data")
 s1_y2=section_One_Quantitative(y2_data)
-print("\ny3_data")
+# print("\ny3_data")
 s1_y3=section_One_Quantitative(y3_data)
-print("\ny4_data")
+# print("\ny4_data")
 s1_y4=section_One_Quantitative(y4_data)
 
-print("\n\n")
-print("Section two:")
-print("\ny1_data")
+# print("\n\n")
+# print("Section two:")
+# print("\ny1_data")
 s2_y1=section_Two_Quantitative(y1_data)
-print("\ny2_data")
+# print("\ny2_data")
 s2_y2=section_Two_Quantitative(y2_data)
-print("\ny3_data")
+# print("\ny3_data")
 s2_y3=section_Two_Quantitative(y3_data)
-print("\ny4_data")
+# print("\ny4_data")
 s2_y4=section_Two_Quantitative(y4_data)
 
-print("\n\n")
-print("Section three:")
-print("\ny1_data")
+# print("\n\n")
+# print("Section three:")
+# print("\ny1_data")
 s3_y1=section_Three_Quantitative(y1_data)
-print("\ny2_data")
+# print("\ny2_data")
 s3_y2=section_Three_Quantitative(y2_data)
-print("\ny3_data")
+# print("\ny3_data")
 s3_y3=section_Three_Quantitative(y3_data)
-print("\ny4_data")
+# print("\ny4_data")
 s3_y4=section_Three_Quantitative(y4_data)
 
+# y1_data = transform_likert_scale(y1_data,cols3)
+# y2_data = transform_likert_scale(y2_data,cols3)
+# y3_data = transform_likert_scale(y3_data,cols3)
+# y4_data = transform_likert_scale(y4_data,cols3)
+# y1_data.fillna(3,inplace=True)
+# y2_data.fillna(3,inplace=True)
+# y3_data.fillna(3,inplace=True)
+# y4_data.fillna(3,inplace=True)
+# print(y1_data.head(5))
+# print(y2_data.head(5))
+# print(y3_data.head(5))
+# print(y4_data.head(5))
+# print(stats.f_oneway(y1_data,y2_data,y3_data,y4_data))
 
 # '''Categorise by section 1 qn 1'''
 s1q1A = df.loc[df["1.\xa0\xa0\xa0\xa0\xa0I keep track of my own learning data (e.g. tracking hours spent on a module per week, strengths and weakness in terms of course topics).2"].isin(["Strongly agree","Agree"])]
@@ -234,6 +318,20 @@ s1q1A_s2 = section_Two_Quantitative(s1q1A)
 s1q1D_s2 = section_Two_Quantitative(s1q1D)
 s1q1A_s3 = section_Three_Quantitative(s1q1A)
 s1q1D_s3 = section_Three_Quantitative(s1q1D)
+
+# resA = transform_likert_scale(s1q1A,cols3)
+# resD = transform_likert_scale(s1q1D,cols3)
+# resA.fillna(3,inplace=True)
+# resD.fillna(3,inplace=True)
+# print(resA.head(5))
+# print(resD.head(5))
+# print(stats.ttest_ind(pd.to_numeric(resA[cols3[0]]), pd.to_numeric(resD[cols3[0]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(resA[cols3[1]]), pd.to_numeric(resD[cols3[1]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(resA[cols3[2]]), pd.to_numeric(resD[cols3[2]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(resA[cols3[3]]), pd.to_numeric(resD[cols3[3]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(resA[cols3[4]]), pd.to_numeric(resD[cols3[4]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(resA[cols3[5]]), pd.to_numeric(resD[cols3[5]]),equal_var=False))
+# print(stats.ttest_ind(pd.to_numeric(resA[cols3[6]]), pd.to_numeric(resD[cols3[6]]),equal_var=False))
 
 # '''Categorise by section 1 qn 2'''
 s1q2A = df.loc[df["2.\xa0\xa0\xa0\xa0 It is important to keep track and analyse my own learning data.2"].isin(["Strongly agree","Agree"])]
@@ -275,16 +373,16 @@ def create_df(datalist,sectionname,sizes):
             combined_data["Agree"].append(datalist[j][i][0]/sizes[j])
             combined_data["Neutral"].append(datalist[j][i][1]/sizes[j])
             combined_data["Disagree"].append(datalist[j][i][2]/sizes[j])
-    for i in combined_data:
-        combined_data[i]= combined_data[i][::-1]
+    # for i in combined_data:
+    #     combined_data[i]= combined_data[i][::-1]
     combined_df = pd.DataFrame(combined_data)
     return combined_df
 
 
-combined_df_STEM= create_df([s1_STEM,s1_non_STEM],["STEM_S1","non_STEM_S1"],[112,56])
-combined_df_year = create_df([s1_y1,s1_y2,s1_y3,s1_y4],["y1_S1","y2_S1","y3_S1",">y4_S1"],[65,53,21,29])
+combined_df_STEM= create_df([s2_STEM,s2_non_STEM],["STEM_S2","non_STEM_S2"],[112,56])
+combined_df_year = create_df([s3_y1,s3_y2,s3_y3,s3_y4],["y1_S3","y2_S3","y3_S3",">y4_S3"],[65,53,21,29])
 combined_df_no = create_df([s1],["S1"],[166])
-combined_df_s1q1 = create_df([s1q1A_s1,s1q1D_s1],["Agree","Disagree"],[77,62]) #77 29 62 / 127 26 15 / 118 31 19
+combined_df_s1q1 = create_df([s1q1A_s2,s1q1D_s2],["Agree","Disagree"],[77,62]) #77 29 62 / 127 26 15 / 118 31 19
 # combined_df = combined_df_no
 # dropped = [i for i in range(0,2,1)]
 # combined_df = combined_df.drop(dropped)
@@ -296,22 +394,67 @@ test_df.loc[3] = combined_df_s1q1.loc[4]
 combined_df = test_df
 # combined_df = combined_df.drop([0,1,2,3])
 print(combined_df)
-plot1 = combined_df.plot( 
-    x = 'question', 
-    kind = 'barh', 
-    stacked = True, 
-    title = 'Section 1 with no categorisation', 
-    mark_right = True)
-plt.legend (loc='upper left')
-# df_total = combined_df
-# df_rel = combined_df[combined_df.columns[1:]].div(df_total, 0)*100
-# print(df_rel)
-new_df= combined_df
-new_df = new_df.drop("question",axis=1)
-for n in new_df: 
-    for i, (cs, ab, pc) in enumerate(zip(combined_df.iloc[:, 1:].cumsum(1)[n], combined_df[n], new_df[n])):
+# plot1 = combined_df.plot( 
+#     x = 'question', 
+#     kind = 'bar', 
+#     stacked = False, 
+#     title = 'Section 1 with no categorisation', 
+#     mark_right = True)
+# plt.legend (loc='upper left')
+# # df_total = combined_df
+# # df_rel = combined_df[combined_df.columns[1:]].div(df_total, 0)*100
+# # print(df_rel)
+# new_df= combined_df
+# new_df = new_df.drop("question",axis=1)
+# for n in new_df: 
+#     for i, (cs, ab, pc) in enumerate(zip(combined_df.iloc[:, 1:].cumsum(1)[n], combined_df[n], new_df[n])):
         
-        plt.text(cs - ab / 2, i, str(np.round(pc*100, 1)) + '%',  va = 'center', ha = 'center')
+#         plt.text(cs - ab / 2, i, str(np.round(pc*100, 1)) + '%',  va = 'center', ha = 'center')
+
+# df = pd.DataFrame([['g1','c1',10],['g1','c2',12],['g1','c3',13],['g2','c1',8],
+#                    ['g2','c2',10],['g2','c3',12]],columns=['group','column','val'])
+
+# df.pivot("Type", "question", "val").plot(kind='bar')
+# print(combined_df_STEM)
+# graph_df = pd.DataFrame({"Questions": ["qn1","qn1","qn2","qn2","qn3","qn3"],"Type":["STEM","SHAPE","STEM","SHAPE","STEM","SHAPE"],\
+#                          "Agree":[i*100 for i in combined_df_STEM["Agree"]]})
+# graph_df = pd.DataFrame({"Questions": ["qn1","qn1","qn2","qn2","qn3","qn3","qn4","qn4","qn5","qn5"],"Type":["STEM","SHAPE","STEM","SHAPE","STEM","SHAPE","STEM","SHAPE","STEM","SHAPE"],\
+#                          "Agree":[i*100 for i in combined_df_STEM["Agree"]]})
+# print(combined_df_s1q1)
+graph_df = pd.DataFrame({"Questions": ["qn4","qn4","qn4","qn4"],"Type":["Year1","Year2","Year3","Year4"],\
+                         "Agree":[combined_df_year["Agree"][12]*100,combined_df_year["Agree"][13]*100,combined_df_year["Agree"][14]*100,combined_df_year["Agree"][15]*100]})
+# graph_df.pivot("Questions", "Type", "Agree").plot(kind='bar')
+# graph_df = pd.DataFrame({"Questions": ["qn5","qn5"],"Type":[" Track own learning data","Do not track own learning data"],\
+#                          "Agree":[combined_df_s1q1["Agree"][8]*100,combined_df_s1q1["Agree"][9]*100]})
+# graph_df = pd.DataFrame({"Questions": ["qn5","qn5"],"Type":[" STEM","SHAPE"],\
+#                          "Agree":[combined_df_STEM["Agree"][8]*100,combined_df_STEM["Agree"][9]*100]})
+
+# print(graph_df)
+ax = graph_df.pivot(index="Questions", columns="Type", values="Agree").plot(kind='bar',title="I feel that the following project could potentially benefit students in NTU. \na. Early AleRT for Learning Intervention (EARLI): A predictive AI project to detect and support at-risk students based on past academic performance.")
+# print(graph_df)
+ax.set_ylabel("Agree percentage")
+for p in ax.patches:
+    width, height = p.get_width(), p.get_height()
+    x, y = p.get_xy()
+    # ax.text(x + width / 2, y + height / 2, f'{height*100:.1f}%', ha='center', va='center')
+    ax.text(x + width / 2, y+ height +1.5 , f'{height:.1f}%', ha='center', va='center')
+# for col, category in enumerate(graph_df.columns):
+#     for i, value in enumerate(graph_df[category]):
+#         ax.text(col + i * 0.2, value + 1, f'{value:.2f}%', ha='center', va='bottom')
+
+# i = 0
+# for p in graph:
+#     width = p.get_width()
+#     height = p.get_height()
+#     x, y = p.get_xy()
+     
+#     plt.text(x+width/2,
+#              y+height*1.01,
+#              str(graph_df["Agree"][i]*100)+'%',
+#              ha='center',
+#              weight='bold')
+#     i += 1
+# graph_df.plot(kind='bar')
 plt.show()
 
 # print([s1_STEM["q2"][0], s1_STEM["q2"][1], s1_STEM["q2"][2], s1_STEM["q2"][0]/112, s1_STEM["q2"][2]/112])
