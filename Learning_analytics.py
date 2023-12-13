@@ -42,6 +42,19 @@ df = df[["ID","Year of Study", "School", "I have read and understood the instruc
         "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0d. Skills and Course Advising for Learning Excellence (SCALE): A course and co-curricular recommendation AI proj...",\
 ]]
 
+
+# qualitative_index = [13, 16, 20, 21, 25, 27, 31, 33, 35, 46, 49, 53, 55, 56, 59, 63, 72, 91, 98, 100,  102, 105, 108, 112, 121, \
+#                      123, 126, 127, 134, 135, 138, 142, 162, 167, 174]
+# qualitative_index =[15,20,21,27,33,35,46,49,53,72,101,102,112,141,167]
+qualitative_index =[15,20,21,25,35,46,53,63,72,91,93,95,100,102,105,108,112,127,128,130,134,135,167]
+
+no_qualitative = df.iloc[[i for i in range(180) if i not in qualitative_index]]
+qualitative_df = df.iloc[qualitative_index]
+no_qualitative.drop(no_qualitative[no_qualitative['I have read and understood the instructions.'] != 'Yes'].index, inplace=True)
+qualitative_df.drop(qualitative_df[qualitative_df['I have read and understood the instructions.'] != 'Yes'].index, inplace=True)
+print(no_qualitative.shape)
+print(qualitative_df.shape)
+
 df.drop(df[df['I have read and understood the instructions.'] != 'Yes'].index, inplace=True)
 
 school_dict = {"CCEB": 8, "CEE": 10, "COE": 5, "EEE": 21, "MSE": 4, "MAE": 12,"REP":4,"SBS":11,"SCSE":22,"SPMS":13,"SSM":2,\
@@ -192,6 +205,20 @@ cols3 = ["1.\xa0\xa0\xa0\xa0 The university should regularly update me about my 
         "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0c. NTU AI Learning Assistant (NALA): Customised Gen-AI tutoring chatbot to guide students based on faculty curat...",\
         "4.\xa0\xa0\xa0\xa0 I feel that the following project could potentially benefit students in NTU.\xa0d. Skills and Course Advising for Learning Excellence (SCALE): A course and co-curricular recommendation AI proj..."
 ]
+
+qualitative_res = transform_likert_scale(qualitative_df,cols3)
+no_qualitative_res = transform_likert_scale(no_qualitative,cols3)
+# print(qualitative_res)
+print(qualitative_res.describe())
+print(no_qualitative_res.describe())
+print(stats.ttest_ind(pd.to_numeric(qualitative_res[cols3[0]]), pd.to_numeric(no_qualitative_res[cols3[0]]),equal_var=False))
+print(stats.ttest_ind(pd.to_numeric(qualitative_res[cols3[1]]), pd.to_numeric(no_qualitative_res[cols3[1]]),equal_var=False))
+print(stats.ttest_ind(pd.to_numeric(qualitative_res[cols3[2]]), pd.to_numeric(no_qualitative_res[cols3[2]]),equal_var=False))
+print(stats.ttest_ind(pd.to_numeric(qualitative_res[cols3[3]]), pd.to_numeric(no_qualitative_res[cols3[3]]),equal_var=False))
+print(stats.ttest_ind(pd.to_numeric(qualitative_res[cols3[4]]), pd.to_numeric(no_qualitative_res[cols3[4]]),equal_var=False))
+print(stats.ttest_ind(pd.to_numeric(qualitative_res[cols3[5]]), pd.to_numeric(no_qualitative_res[cols3[5]]),equal_var=False))
+print(stats.ttest_ind(pd.to_numeric(qualitative_res[cols3[6]]), pd.to_numeric(no_qualitative_res[cols3[6]]),equal_var=False))
+
 # STEM_res = transform_likert_scale(STEM_data,cols)
 # SHAPE_res = transform_likert_scale(non_STEM_data,cols)
 # print(STEM_res)
@@ -224,6 +251,13 @@ cols3 = ["1.\xa0\xa0\xa0\xa0 The university should regularly update me about my 
 # print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[5]]), pd.to_numeric(SHAPE_res3[cols3[5]]),equal_var=False))
 # print(stats.ttest_ind(pd.to_numeric(STEM_res3[cols3[6]]), pd.to_numeric(SHAPE_res3[cols3[6]]),equal_var=False))
 
+'''Categorisation by whether they answer qualitative'''
+qualitative_s1 = section_One_Quantitative(qualitative_df)
+no_qualitative_s1 = section_One_Quantitative(no_qualitative)
+qualitative_s2 = section_Two_Quantitative(qualitative_df)
+no_qualitative_s2 = section_Two_Quantitative(no_qualitative)
+qualitative_s3 = section_Three_Quantitative(qualitative_df)
+no_qualitative_s3 = section_Three_Quantitative(no_qualitative)
 
 '''No categorisation'''
 s1 = section_One_Quantitative(df)
@@ -378,7 +412,8 @@ def create_df(datalist,sectionname,sizes):
     combined_df = pd.DataFrame(combined_data)
     return combined_df
 
-
+combined_df_qualitative= create_df([qualitative_s3,no_qualitative_s3],["qualitative","no_qualitative"],[23,142]) # 35/130 15/150 23/142
+print(combined_df_qualitative)
 combined_df_STEM= create_df([s2_STEM,s2_non_STEM],["STEM_S2","non_STEM_S2"],[112,56])
 combined_df_year = create_df([s3_y1,s3_y2,s3_y3,s3_y4],["y1_S3","y2_S3","y3_S3",">y4_S3"],[65,53,21,29])
 combined_df_no = create_df([s1],["S1"],[166])
@@ -394,6 +429,7 @@ test_df.loc[3] = combined_df_s1q1.loc[4]
 combined_df = test_df
 # combined_df = combined_df.drop([0,1,2,3])
 print(combined_df)
+
 # plot1 = combined_df.plot( 
 #     x = 'question', 
 #     kind = 'bar', 
@@ -421,17 +457,22 @@ print(combined_df)
 # graph_df = pd.DataFrame({"Questions": ["qn1","qn1","qn2","qn2","qn3","qn3","qn4","qn4","qn5","qn5"],"Type":["STEM","SHAPE","STEM","SHAPE","STEM","SHAPE","STEM","SHAPE","STEM","SHAPE"],\
 #                          "Agree":[i*100 for i in combined_df_STEM["Agree"]]})
 # print(combined_df_s1q1)
-graph_df = pd.DataFrame({"Questions": ["qn4","qn4","qn4","qn4"],"Type":["Year1","Year2","Year3","Year4"],\
-                         "Agree":[combined_df_year["Agree"][12]*100,combined_df_year["Agree"][13]*100,combined_df_year["Agree"][14]*100,combined_df_year["Agree"][15]*100]})
+# graph_df = pd.DataFrame({"Questions": ["qn4","qn4","qn4","qn4"],"Type":["Year1","Year2","Year3","Year4"],\
+#                          "Agree":[combined_df_year["Agree"][12]*100,combined_df_year["Agree"][13]*100,combined_df_year["Agree"][14]*100,combined_df_year["Agree"][15]*100]})
 # graph_df.pivot("Questions", "Type", "Agree").plot(kind='bar')
 # graph_df = pd.DataFrame({"Questions": ["qn5","qn5"],"Type":[" Track own learning data","Do not track own learning data"],\
 #                          "Agree":[combined_df_s1q1["Agree"][8]*100,combined_df_s1q1["Agree"][9]*100]})
 # graph_df = pd.DataFrame({"Questions": ["qn5","qn5"],"Type":[" STEM","SHAPE"],\
 #                          "Agree":[combined_df_STEM["Agree"][8]*100,combined_df_STEM["Agree"][9]*100]})
 
+# graph_df = pd.DataFrame({"Questions": ["qn2","qn2"],"Type":[" gave qualitative response","did not give qualitative response"],\
+#                          "Agree":[combined_df_qualitative["Agree"][2]*100,combined_df_qualitative["Agree"][3]*100]})
+graph_df = pd.DataFrame({"Questions": ["qn1","qn1","qn2","qn2","qn3","qn3","qn4","qn4","qn5","qn5","qn6","qn6","qn7","qn7"],"Type":[" gave qualitative response","did not give qualitative response"," gave qualitative response","did not give qualitative response"," gave qualitative response","did not give qualitative response"," gave qualitative response","did not give qualitative response"," gave qualitative response","did not give qualitative response"," gave qualitative response","did not give qualitative response"," gave qualitative response","did not give qualitative response"],\
+                         "Agree":[i*100 for i in combined_df_qualitative["Agree"]]})
 # print(graph_df)
-ax = graph_df.pivot(index="Questions", columns="Type", values="Agree").plot(kind='bar',title="I feel that the following project could potentially benefit students in NTU. \na. Early AleRT for Learning Intervention (EARLI): A predictive AI project to detect and support at-risk students based on past academic performance.")
+ax = graph_df.pivot(index="Questions", columns="Type", values="Agree").plot(kind='bar',title="Section 3")
 # print(graph_df)
+plt.legend (loc='upper left')
 ax.set_ylabel("Agree percentage")
 for p in ax.patches:
     width, height = p.get_width(), p.get_height()
